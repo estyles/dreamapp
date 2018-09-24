@@ -1,0 +1,58 @@
+{
+  "name": "RunningGame",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "isRunning": {
+      "type": "boolean",
+      "required": true
+    },
+    "startTime": {
+      "type": "date",
+      "required": true
+    },
+    "currentStageStartTime": {
+      "type": "date",
+      "required": true
+    },
+    "currentStage": {
+      "type": "number"
+    },
+    "currentStageType": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "answerLists": {
+      "type": "hasMany",
+      "model": "AnswerList",
+      "foreignKey": ""
+    },
+    "gameGroups": {
+      "type": "hasMany",
+      "model": "GameGroup",
+      "foreignKey": ""
+    },
+    "members": {
+      "type": "hasMany",
+      "model": "Member",
+      "foreignKey": ""
+    },
+    "stage": {
+      "type": "hasOne",
+      "model": "Stage",
+      "foreignKey": ""
+    },
+    "game": {
+      "type": "belongsTo",
+      "model": "Game",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

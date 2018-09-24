@@ -1,0 +1,28 @@
+{
+  "name": "GameGroup",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "isDone": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "members": {
+      "type": "hasMany",
+      "model": "Member",
+      "foreignKey": ""
+    },
+    "runningGame": {
+      "type": "belongsTo",
+      "model": "RunningGame",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Member",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "birthDay": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "answerLists": {
+      "type": "hasMany",
+      "model": "answerList",
+      "foreignKey": ""
+    },
+    "runningGame": {
+      "type": "belongsTo",
+      "model": "RunningGame",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "gameGroup": {
+      "type": "belongsTo",
+      "model": "GameGroup",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "group": {
+      "type": "belongsTo",
+      "model": "Group",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

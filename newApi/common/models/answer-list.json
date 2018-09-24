@@ -1,0 +1,39 @@
+{
+  "name": "AnswerList",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "dateStarted": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "answers": {
+      "type": "hasMany",
+      "model": "Answer",
+      "foreignKey": ""
+    },
+    "member": {
+      "type": "belongsTo",
+      "model": "Member",
+      "foreignKey": ""
+    },
+    "game": {
+      "type": "belongsTo",
+      "model": "Game",
+      "foreignKey": ""
+    },
+    "runningGame": {
+      "type": "belongsTo",
+      "model": "RunningGame",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

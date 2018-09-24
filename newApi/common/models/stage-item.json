@@ -1,0 +1,99 @@
+{
+  "name": "StageItem",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "stageType": {
+      "type": "string"
+    },
+    "itemType": {
+      "type": "string",
+      "required": true
+    },
+    "order": {
+      "type": "number",
+      "required": true
+    },
+    "inputName": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "iconLeft": {
+      "type": "string"
+    },
+    "iconRight": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "autoplay": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "rows": {
+      "type": "string"
+    },
+    "min": {
+      "type": "number",
+      "default": 1
+    },
+    "max": {
+      "type": "number",
+      "default": 10
+    },
+    "step": {
+      "type": "number",
+      "default": 1
+    },
+    "minText": {
+      "type": "string"
+    },
+    "maxText": {
+      "type": "string"
+    },
+    "emptyValidationText": {
+      "type": "string"
+    },
+    "rangeValidationText": {
+      "type": "string"
+    },
+    "selectItems": {
+      "type": "Object"
+    },
+    "extraData": {
+      "type": "Object"
+    },
+    "chartConfig": {
+      "type": "Object"
+    },
+    "styles": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "stage": {
+      "type": "belongsTo",
+      "model": "Stage",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "dataQuery": {
+      "type": "hasOne",
+      "model": "DataQuery",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

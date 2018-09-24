@@ -1,0 +1,43 @@
+{
+  "name": "Group",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "klasType": {
+      "type": "string",
+      "required": true
+    },
+    "klasNaam": {
+      "type": "string",
+      "required": true
+    },
+    "klasNummer": {
+      "type": "number",
+      "required": true
+    },
+    "plaatsNaam": {
+      "type": "string"
+    },
+    "geoCoord": {
+      "type": "geopoint"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "runningGames": {
+      "type": "hasOne",
+      "model": "RunningGame",
+      "foreignKey": ""
+    },
+    "members": {
+      "type": "hasMany",
+      "model": "Member",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

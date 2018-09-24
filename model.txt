@@ -1,0 +1,160 @@
+User:
+    *userId: number
+    klasId: number
+    schoolId: number
+    nickname: string
+    leeftijd: number
+    email: string
+    wachtwoord: string
+    antwoorden: Answers[]
+
+School:
+    *schoolId: number
+    schoolnaam: string
+    plaats: string
+    geoCoord: string
+    email: string
+    klassen: Klas[]
+
+Klas:
+    *klasId: number
+    klasType: string (vmbo,havo,vwo)
+    klasNummer: number
+    klasNaam: string
+
+Answers:
+    *answersId: number
+    dateStarted: dateTime
+    gameId: number
+    answers: stageAnswers[]
+
+stageAnswers:
+    *stageId: number
+    answers: Answer[]
+
+Answer:
+    *questionId: number
+    inputName?: string
+    text?: string
+    number?: number
+
+Game:
+    *gameId: number
+    title: string
+    stages: Stage[]
+    text: string
+    startText: string
+    startIcon: string
+
+Stage:
+    *stageId: number
+    stageOrder: number
+    title: string
+    stageType: string (question|grouping|result)
+    questionItems?: QuestionItem[]
+    resultItems?: ResultItem[]
+    groupingItems?: GroupingItem[]
+    nextButtonText: string
+    nextButtonIcon: string
+    backgroundColor: string
+    textColor: string
+
+QuestionItem:
+    *questionId: key
+    itemOrder: number
+    itemType: string (headingItem|textItem|seperatorItem|videoItem|audioItem|imageItem|textInput|rangeInput|numberInput)
+    inputName?: string
+    text?: string
+    iconLeft?: string
+    iconRight?: string
+    url?: string
+    autoplay?: bool
+    placeholder?: string
+    rows?: number
+    min?: number
+    max?: number
+    step?: number
+    minText?: string
+    maxText?: string
+    emptyValidationText?: string
+    rangeValidationText?: string
+    extraData?: Object
+
+GroupingItem:
+    *groupingId: number
+    itemOrder: number
+    itemType: string (headingItem|textItem|seperatorItem|videoItem|audioItem|imageItem|matchedUsersItem)
+    text?: string
+    iconLeft?: string
+    iconRight?: string
+    url?: string
+    autoplay?: boolean
+
+ResultItem:
+    *resultId: number
+    itemOrder: number
+    resultType: string (headingItem|textItem|seperatorItem|barChart|lineChart|pieChart)
+    text?: string
+    iconLeft?: string
+    iconRight?: string
+    placeholderData?: Object
+    resultData?: queryId
+    chartConfig?: Object
+    extraData?: Object
+
+QueryList:                      (allows admin to add new dataQueries for resultItems)
+    queryId: number
+    queryCommand: string
+    name: string
+    description: string
+
+
+
+displayitems: 
+( only for showing parts of the app interface, in database all items are in same table )
+
+|headingItem
+    text:
+    icon:
+
+|textItem
+    +text
+
+|seperatorItem
+    +text
+
+|videoItem
+    url
+    autoplay
+
+|audioItem
+    +url
+    +autoplay
+
+|imageItem
+    +url
+    +autoplay
+    
+|textInput
+    placeholder
+    rows
+    
+|rangeInput
+    min
+    max
+    step
+    mintext
+    maxtext
+
+|numberInput
+    +min
+    +max
+
+|barChart
+|lineChart
+|pieChart
+     resultData 
+     chartConfig
+
+|matchedUsersItem
+     userList

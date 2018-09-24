@@ -1,0 +1,40 @@
+{
+  "name": "Answer",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "itemType": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "number": {
+      "type": "number"
+    },
+    "boolean": {
+      "type": "boolean"
+    },
+    "object": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "answerList": {
+      "type": "belongsTo",
+      "model": "AnswerList",
+      "foreignKey": ""
+    },
+    "stageItem": {
+      "type": "belongsTo",
+      "model": "StageItem",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Stage",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "order": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "nextButtonText": {
+      "type": "string",
+      "default": "Volgende"
+    },
+    "nextButtonIcon": {
+      "type": "string",
+      "default": "Volgende"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "stageItems": {
+      "type": "hasMany",
+      "model": "StageItem",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "game": {
+      "type": "belongsTo",
+      "model": "Game",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
