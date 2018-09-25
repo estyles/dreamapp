@@ -11,15 +11,19 @@
   <h1>
     {{title}}
   </h1>
-  <!-- <form (submit)="add()">
-    <input type="text" name="todo" [(ngModel)]="todo.text" placeholder="Add Todo" />
+  <form (submit)="add()">
+    <input type="text" name="itemtext" [(ngModel)]="stageItem.text" placeholder="Add stageItem text" />
+    <br /> 
+    <input type="text" name="itemtype" [(ngModel)]="stageItem.itemType" placeholder="Add stageItem type" />
+    <br />
+    <input type="number" name="order" [(ngModel)]="stageItem.order" placeholder="Add stageItem position" />
+    <br />
     <button>Add</button>
   </form>
+
   <ul>
-    <li *ngFor="let todo of reference.on('changes') | async">
-      <input type="text" name="todo" [(ngModel)]="todo.text" />
-      <button (click)="update(todo)">update</button>
-      <button (click)="remove(todo)">remove</button>
-    </li>
-  </ul> -->
+    <li *ngFor="let item of itemList | async"> {{item?.text}}</li> 
+  </ul>
+
+
 </ion-content>

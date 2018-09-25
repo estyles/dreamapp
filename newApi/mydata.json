@@ -1,0 +1,49 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 1,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "RunningGame": 1,
+    "GameGroup": 1,
+    "Member": 1,
+    "Group": 1,
+    "AnswerList": 1,
+    "Answer": 1,
+    "Game": 1,
+    "Stage": 1,
+    "StageItem": 13,
+    "DataQuery": 1
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {},
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "RunningGame": {},
+    "GameGroup": {},
+    "Member": {},
+    "Group": {},
+    "AnswerList": {},
+    "Answer": {},
+    "Game": {},
+    "Stage": {},
+    "StageItem": {
+      "1": "{\"itemType\":\"4\",\"order\":4,\"text\":\"45\",\"min\":1,\"max\":10,\"step\":1,\"id\":1}",
+      "2": "{\"itemType\":\"1\",\"order\":11,\"text\":\"1\",\"min\":1,\"max\":10,\"step\":1,\"id\":2}",
+      "3": "{\"itemType\":\"3\",\"order\":3,\"text\":\"3\",\"min\":1,\"max\":10,\"step\":1,\"id\":3}",
+      "4": "{\"stageType\":\"string\",\"itemType\":\"string\",\"order\":0,\"inputName\":\"string\",\"text\":\"string\",\"iconLeft\":\"string\",\"iconRight\":\"string\",\"url\":\"string\",\"autoplay\":\"string\",\"placeholder\":\"string\",\"rows\":\"string\",\"min\":1,\"max\":10,\"step\":1,\"minText\":\"string\",\"maxText\":\"string\",\"emptyValidationText\":\"string\",\"rangeValidationText\":\"string\",\"selectItems\":{},\"extraData\":{},\"chartConfig\":{},\"styles\":\"string\",\"stageId\":0,\"id\":4}",
+      "5": "{\"itemType\":\"d\",\"order\":4,\"text\":\"d\",\"min\":1,\"max\":10,\"step\":1,\"id\":5}",
+      "6": "{\"itemType\":\"textItem\",\"order\":9,\"min\":1,\"max\":10,\"step\":1,\"id\":6}",
+      "7": "{\"itemType\":\"3\",\"order\":3,\"text\":\"3\",\"min\":1,\"max\":10,\"step\":1,\"id\":7}",
+      "8": "{\"itemType\":\"567\",\"order\":5675,\"text\":\"67\",\"min\":1,\"max\":10,\"step\":1,\"id\":8}",
+      "9": "{\"itemType\":\"1\",\"order\":1,\"text\":\"1\",\"min\":1,\"max\":10,\"step\":1,\"id\":9}",
+      "10": "{\"itemType\":\"454545\",\"order\":45,\"text\":\"45\",\"min\":1,\"max\":10,\"step\":1,\"id\":10}",
+      "11": "{\"itemType\":\"3298879\",\"order\":1,\"text\":\"112\",\"min\":1,\"max\":10,\"step\":1,\"id\":11}",
+      "12": "{\"itemType\":\"11111\",\"order\":5,\"text\":\"453wqerwqr\",\"min\":1,\"max\":10,\"step\":1,\"id\":12}"
+    },
+    "DataQuery": {}
+  }
+}

@@ -4,6 +4,10 @@
     "generateOperationScopedModels": true
   },
   "@mean-expert/loopback-component-realtime": {
-    "auth": false
+    "debug": true,
+    "auth": false,
+    "driver": {
+      "name": "socket.io"
+    }
   }
 }

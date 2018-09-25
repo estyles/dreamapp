@@ -5,6 +5,9 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "FireLoop": true
+  },
   "properties": {
     "stageType": {
       "type": "string"
