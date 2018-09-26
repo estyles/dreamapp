@@ -14,12 +14,15 @@
   "dependencies": {
     "compression": "^1.0.3",
     "cors": "^2.5.2",
+    "dotenv": "^6.0.0",
     "helmet": "^3.10.0",
+    "loopback": "^3.22.3",
     "loopback-boot": "^2.6.5",
-    "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^3.0.0",
+    "loopback-component-auto-migrate": "^0.4.0",
     "loopback-component-explorer": "^6.3.0",
-    "loopback": "^3.22.3"
+    "loopback-connector-mysql": "^5.3.1",
+    "serve-favicon": "^2.0.1",
+    "strong-error-handler": "^3.0.0"
   },
   "devDependencies": {
     "@mean-expert/loopback-sdk-builder": "2.3.1",

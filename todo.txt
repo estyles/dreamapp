@@ -1,0 +1,40 @@
+-1.setup environment / db / mail / server
+    git (done)
+    db (done)
+    mail
+    http
+    db models (mostly done)
+    acl
+
+0. User login
+    register page
+        register as group
+    login page
+        join group
+    api access rights
+    user page, to change stuff, (view answers?)
+    admin pages (track running games?, manage all groups, see stats)
+
+1. stageitem templates
+    questions
+        db posts
+    grouping
+        grouping algorythm
+            data query
+            add max wait time?
+    result
+        data query
+        chart display (live update?)
+        other displays (slider?)
+
+2. stage pages
+    need dynamic routes
+
+3. game selection screen
+    waiting for players screen
+
+4. possible backend
+    create stages
+        add Items
+        drag Items
+    create queries

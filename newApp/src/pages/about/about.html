@@ -12,18 +12,23 @@
     {{title}}
   </h1>
   <form (submit)="add()">
-    <input type="text" name="itemtext" [(ngModel)]="stageItem.text" placeholder="Add stageItem text" />
+    <input type="text" name="itemtext" [(ngModel)]="stageItem.text" placeholder="Add stageItem text" value="testItem " />
     <br /> 
-    <input type="text" name="itemtype" [(ngModel)]="stageItem.itemType" placeholder="Add stageItem type" />
+    <input type="text" name="itemtype" [(ngModel)]="stageItem.itemType" placeholder="Add stageItem type" value="testItem" />
     <br />
-    <input type="number" name="order" [(ngModel)]="stageItem.order" placeholder="Add stageItem position" />
+    <input type="number" name="order" [(ngModel)]="stageItem.order" placeholder="Add stageItem position" value=4/>
     <br />
     <button>Add</button>
   </form>
 
-  <ul>
-    <li *ngFor="let item of itemList | async"> {{item?.text}}</li> 
-  </ul>
-
+  <div *ngIf="itemList | async as items; else loading">
+    <ng-container *ngIf="items.length; else noItems">
+      <ul>
+        <li *ngFor="let item of items"> {{item?.text}} <button (click)="remove(item)">X</button></li> 
+      </ul>
+    </ng-container>
+    <ng-template #noItems>No Items!</ng-template>
+   </div>
+   <ng-template #loading>loading animation...</ng-template>
 
 </ion-content>

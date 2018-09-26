@@ -9,5 +9,10 @@
     "driver": {
       "name": "socket.io"
     }
+  },
+  "loopback-component-auto-migrate": {
+    "enabled": false,
+    "raiseError": false,
+    "migration": "auto-update-data"
   }
 }
