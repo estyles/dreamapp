@@ -14,8 +14,14 @@
       "../node_modules/@mean-expert/loopback-component-realtime/dist/mixins"
     ]
   },
+  "Email": {
+    "dataSource": "emailDs"
+  },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "options": {
+      "emailVerificationRequired": true
+    }
   },
   "AccessToken": {
     "dataSource": "db",
