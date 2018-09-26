@@ -7,7 +7,12 @@ import { SDKBrowserModule } from '../app/shared/sdk/index';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+import { AccountPage } from '../pages/account/account';
 import { TabsPage } from '../pages/tabs/tabs';
+
+import { AuthProvider } from '../providers/auth/auth';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // import { StatusBar } from '@ionic-native/status-bar';
 // import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,11 +23,14 @@ import { TabsPage } from '../pages/tabs/tabs';
     AboutPage,
     ContactPage,
     HomePage,
+    AccountPage,
     TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: ''
+    }),
     SDKBrowserModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -31,12 +39,14 @@ import { TabsPage } from '../pages/tabs/tabs';
     AboutPage,
     ContactPage,
     HomePage,
+    AccountPage,
     TabsPage
   ],
   providers: [
     // StatusBar,
     // SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}
