@@ -18,68 +18,69 @@
     "dataSource": "emailDs"
   },
   "User": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "options": {
       "emailVerificationRequired": true
-    }
+    },
+    "public": true
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": false
   },
   "RunningGame": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "GameGroup": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "Member": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "Group": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "AnswerList": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "Answer": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "Game": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "Stage": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "StageItem": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   },
   "DataQuery": {
-    "dataSource": "db",
+    "dataSource": "mariadb",
     "public": true
   }
 }

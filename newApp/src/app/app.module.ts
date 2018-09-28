@@ -7,7 +7,7 @@ import { SDKBrowserModule } from '../app/shared/sdk/index';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { AccountPage } from '../pages/account/account';
+// import { AccountPage } from '../pages/account/account';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { AuthProvider } from '../providers/auth/auth';
@@ -23,13 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
     AboutPage,
     ContactPage,
     HomePage,
-    AccountPage,
+    // AccountPage,
     TabsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
-      backButtonText: ''
+      backButtonText: 'terug'
     }),
     SDKBrowserModule.forRoot()
   ],
@@ -39,7 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     AboutPage,
     ContactPage,
     HomePage,
-    AccountPage,
+    // AccountPage,
     TabsPage
   ],
   providers: [

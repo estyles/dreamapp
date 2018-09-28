@@ -1,19 +1,8 @@
 {
-  "db_local": {
-    "name": "db_local",
+  "db_file": {
+    "name": "db_file",
     "connector": "memory",
     "file": "mydata.json"
-  },
-  "db": {
-    "name": "db",
-    "connector": "mysql",
-    "host": "${DB_HOST}",
-    "port": "${DB_PORT}",
-    "database": "${DB_NAME}",
-    "password": "${DB_PASSWORD}",
-    "user": "${DB_USER}",
-    "debug": false,
-    "collation": "utf8_general_ci"
   },
   "emailDs": {
     "name": "emailDs",
@@ -30,5 +19,16 @@
         }
       }
     ]
+  },
+  "mariadb": {
+    "host": "${MDB_HOST}",
+    "port": "${MDB_PORT}",
+    "database": "${MDB_NAME}",
+    "password": "${MDB_PASSWORD}",
+    "name": "mariadb",
+    "connector": "mysql",
+    "user": "${MDB_USER}",
+    "debug": false,
+    "collation": "utf8_general_ci"
   }
 }

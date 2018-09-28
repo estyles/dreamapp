@@ -6,7 +6,7 @@ const loopback = require("loopback");
 
 // important: make sure you use / have an existing email address setup
 // which is able to send emails. otherwise sending emails is likely to fail
-const senderAddress = process.env.EDS_USER;
+const senderAddress = process.env.EDS_MAILADRESS;
 
 module.exports = function (Member) {
 
@@ -77,7 +77,7 @@ module.exports = function (Member) {
     // create an object with the nessacery date to render the template
     const templateData = {
       url: url.join(''),
-      user: info.user
+      username: info.username
     };
 
     // construct a loopback template renderer

@@ -64,6 +64,7 @@ export class AccountPage {
   // input controls
   public name: AbstractControl;
   public email: AbstractControl;
+  public birthDay: AbstractControl;
   public password: AbstractControl;
 
   // global, reusable loading indicator
@@ -127,6 +128,7 @@ export class AccountPage {
     this.accountForm = this.fb.group({
       email: [null, Validators.compose([Validators.required, Validators.email])],
       name: [null, Validators.compose([Validators.required])],
+      birthDay: [null, Validators.compose([Validators.required])],
       password: [null, Validators.compose([Validators.required])]
     });
 
@@ -135,6 +137,7 @@ export class AccountPage {
     // control in the view; email.valid, email.value etc.
     this.email = this.accountForm.controls['email'];
     this.name = this.accountForm.controls['name'];
+    this.birthDay = this.accountForm.controls['birthDay'];
     this.password = this.accountForm.controls['password'];
 
   }
@@ -168,36 +171,29 @@ export class AccountPage {
         })
       )
       .subscribe((res: HttpResponse<any>) => {
-
         // succesfully logged in
         if (res.status === HttpStatus.Ok) {
-
           // set the user
           this.user = res.body;
-
           // update the view to reflect that state
           this.view = State.Authenticated;
         } else {
-          console.error('Something went wrong', res);
+          console.error('Er is iets verkeerd gegaan', res);
         }
-
       }, (err: HttpErrorResponse) => {
-
         // it is possible that the email address has not been verified and the
         // email with the link to confirm the email address has expired, upon login
         // a 401 is trown. an object is present with the id of the user present
-
         // err.error.error.details = {
         //   userId: user.id,
         // };
-
         // with which a new email verification request can be triggered via
         // api/Account/:id/verify
         if (err.status === HttpStatus.Unauthorized) {
 
           const confirm: ResponseConfimation = {
-            title: `Something went wrong`,
-            message: `Sorry, your password or email address is incorrect. Please double-check both fields and try again.`,
+            title: `Er gaat iets verkeerd`,
+            message: `Sorry, het wachtwoord of emailadres is verkeerd. Probeer het opnieuw.`,
             nextViewState: State.Login
           }
 
@@ -205,7 +201,7 @@ export class AccountPage {
 
         }
 
-        console.error('Something went wrong', err);
+        console.error('Er is iets verkeerd gegaan', err);
 
       });
 
@@ -216,7 +212,7 @@ export class AccountPage {
   public createAccount() {
 
     if (!this.accountForm.valid) {
-      console.error('All fields are required to create an account.');
+      console.error('Alle velden zijn nodig om een account te maken.');
       return;
     }
 
@@ -224,7 +220,7 @@ export class AccountPage {
       username: this.accountForm.controls['name'].value,
       email: this.accountForm.controls['email'].value,
       password: this.accountForm.controls['password'].value,
-      birthDay: new Date().toUTCString()
+      birthDay: new Date(this.accountForm.controls['birthDay'].value).toUTCString(),
     }
 
     this.loader = this.loadingCtrl.create();
@@ -251,7 +247,7 @@ export class AccountPage {
           this.handleResponse(confirm);
 
         } else {
-          console.error('Something went wrong', res);
+          console.error('Er is iets verkeerd gegaan', res);
         }
 
       }, (err: HttpErrorResponse) => {
@@ -260,7 +256,7 @@ export class AccountPage {
         if (err.status === HttpStatus.UnprocessableEntity) {
           console.error('Unable to create an account, an account with the same email address is already registered', err);
         } else {
-          console.error('Something went wrong', err);
+          console.error('Er is iets verkeerd gegaan', err);
         }
 
       });
@@ -322,7 +318,7 @@ export class AccountPage {
 
 
         } else {
-          console.error('Something went wrong', res);
+          console.error('Er is iets verkeerd gegaan', res);
         }
 
       }, (err: HttpErrorResponse) => {
@@ -341,7 +337,7 @@ export class AccountPage {
         else if (err.status === HttpStatus.BadRequest) {
           console.error('Invalid token, email address is already confirmed or the token is expired', err);
         } else {
-          console.error('Something went wrong', err);
+          console.error('Er is iets verkeerd gegaan', err);
         }
 
       });
@@ -392,7 +388,7 @@ export class AccountPage {
           this.handleResponse(confirm);
 
         } else {
-          console.error('Something went wrong', res);
+          console.error('Er is iets verkeerd gegaan', res);
         }
 
       }, (err) => {
@@ -410,7 +406,7 @@ export class AccountPage {
         else if (err.status === HttpStatus.Unauthorized) {
           console.error('Unable to change password since the email address has not been validated yet');
         } else {
-          console.error('Something went wrong', err);
+          console.error('Er is iets verkeerd gegaan', err);
         }
 
       });
@@ -460,7 +456,7 @@ export class AccountPage {
           this.handleResponse(confirm);
 
         } else {
-          console.error('Something went wrong', res);
+          console.error('Er is iets verkeerd gegaan', res);
         }
 
       }, (err: HttpErrorResponse) => {
@@ -469,7 +465,7 @@ export class AccountPage {
         if (err.status === HttpStatus.NotFound) {
           console.error('Unable to find user to confirm email address for', err)
         } else {
-          console.error('Something went wrong', err);
+          console.error('Er is iets verkeerd gegaan', err);
         }
 
       });
@@ -505,11 +501,11 @@ export class AccountPage {
           this.handleResponse(confirm);
 
         } else {
-          console.error('Something went wrong', res);
+          console.error('Er is iets verkeerd gegaan', res);
         }
 
       }, (err: HttpErrorResponse) => {
-        console.error('Something went wrong', err);
+        console.error('Er is iets verkeerd gegaan', err);
       });
 
   }
