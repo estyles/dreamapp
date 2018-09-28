@@ -1,19 +1,20 @@
 -1.setup environment / db / mail / server
     git (done)
     db (done)
-    mail
+    mail (done / with sendgrid / needs TLS disable evn var)
     http
     db models (mostly done)
     acl
 
 0. User login
-    register page
+    register page (done / basic func )
         register as group
-    login page
+    login page  (done / basic func )
         join group
-    api access rights
-    user page, to change stuff, (view answers?)
-    admin pages (track running games?, manage all groups, see stats)
+    recover / reset (done / not in Dutch )
+    api access rights (seems ok, needs own version for post, can use sdk enpoints for others. ) 
+    user page? to change stuff, view answers?
+    admin pages? track running games?, manage all groups, see stats.
 
 1. stageitem templates
     questions
@@ -33,7 +34,7 @@
 3. game selection screen
     waiting for players screen
 
-4. possible backend
+4. possible backend¢©
     create stages
         add Items
         drag Items
