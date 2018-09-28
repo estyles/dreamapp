@@ -5,11 +5,11 @@
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
-    "start": "ionic-app-scripts serve",
-    "clean": "ionic-app-scripts clean",
-    "build": "ionic-app-scripts build",
+    "start": "ionic-app-scripts serve --wwwDir ..\\newApi\\client\\www",
+    "clean": "ionic-app-scripts clean --wwwDir ..\\newApi\\client\\www",
+    "build": "ionic-app-scripts build --wwwDir ..\\newApi\\client\\www",
     "lint": "ionic-app-scripts lint",
-    "dev": "concurrently \"cd .. && cd newApi && node .\" \"ionic-app-scripts serve\"",
+    "dev": "concurrently \"cd .. && cd newApi && node .\" \"ionic-app-scripts serve --wwwDir ..\\newApi\\client\\www\"",
     "serve": "npm run build --prod && cd .. && cd newApi && node ."
   },
   "dependencies": {
