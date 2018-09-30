@@ -12,14 +12,11 @@ export interface GroupInterface {
   "klasNummer": number;
   "plaatsNaam"?: string;
   "geoCoord"?: GeoPoint;
-  "realm"?: string;
-  "username"?: string;
-  "email": string;
-  "emailVerified"?: boolean;
   "id"?: number;
-  "password"?: string;
-  accessTokens?: any[];
+  "memberId"?: number;
+  "adminId"?: number;
   runningGames?: RunningGame;
+  member?: Member;
   members?: Member[];
 }
 
@@ -29,14 +26,11 @@ export class Group implements GroupInterface {
   "klasNummer": number;
   "plaatsNaam": string;
   "geoCoord": GeoPoint;
-  "realm": string;
-  "username": string;
-  "email": string;
-  "emailVerified": boolean;
   "id": number;
-  "password": string;
-  accessTokens: any[];
+  "memberId": number;
+  "adminId": number;
   runningGames: RunningGame;
+  member: Member;
   members: Member[];
   constructor(data?: GroupInterface) {
     Object.assign(this, data);
@@ -91,40 +85,20 @@ export class Group implements GroupInterface {
           name: 'geoCoord',
           type: 'GeoPoint'
         },
-        "realm": {
-          name: 'realm',
-          type: 'string'
-        },
-        "username": {
-          name: 'username',
-          type: 'string'
-        },
-        "email": {
-          name: 'email',
-          type: 'string'
-        },
-        "emailVerified": {
-          name: 'emailVerified',
-          type: 'boolean'
-        },
         "id": {
           name: 'id',
           type: 'number'
         },
-        "password": {
-          name: 'password',
-          type: 'string'
+        "memberId": {
+          name: 'memberId',
+          type: 'number'
+        },
+        "adminId": {
+          name: 'adminId',
+          type: 'number'
         },
       },
       relations: {
-        accessTokens: {
-          name: 'accessTokens',
-          type: 'any[]',
-          model: '',
-          relationType: 'hasMany',
-                  keyFrom: 'id',
-          keyTo: 'userId'
-        },
         runningGames: {
           name: 'runningGames',
           type: 'RunningGame',
@@ -132,6 +106,14 @@ export class Group implements GroupInterface {
           relationType: 'hasOne',
                   keyFrom: 'id',
           keyTo: 'groupId'
+        },
+        member: {
+          name: 'member',
+          type: 'Member',
+          model: 'Member',
+          relationType: 'belongsTo',
+                  keyFrom: 'memberId',
+          keyTo: 'id'
         },
         members: {
           name: 'members',

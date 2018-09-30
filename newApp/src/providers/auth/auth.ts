@@ -1,20 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MemberApi } from '../../app/shared/sdk/services/custom/Member';
-
-/*
-  Generated class for the AuthProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-
-export class Account {
-  email: string;
-  username?: string;
-  password?: string;
-  birthDay?: string = new Date().toISOString();
-}
+import { MemberInterface } from '../../app/shared/sdk/models/Member';
+import { GroupApi } from '../../app/shared/sdk/services/custom/Group';
+import { GroupInterface } from '../../app/shared/sdk/models/Group';
 
 export class User {
   id: string;
@@ -34,7 +23,8 @@ export class NewPasswordContext {
 }
 
 // urls
-const BASE = "http://localhost:3000/api/Members";
+const MEMBERBASE = "http://localhost:3000/api/Members";
+const GROUPBASE = "http://localhost:3000/api/Groups";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 const CONFIRM = "/confirm";
@@ -52,25 +42,34 @@ export class AuthProvider {
 
   constructor(
     public http: HttpClient, 
-    public memberApi: MemberApi
+    public memberApi: MemberApi,
+    public groupApi: GroupApi
   ) { }
 
 
   // make the request for creating an account
-  public createAccount(account: Account) {
+  public createAccount(account: (MemberInterface) ) {
     // post missing in memberApi
     // return this.memberApi.patchOrCreate(account);
     return this
       .http
-      .post(BASE, account, { observe: 'response' });
+      .post(MEMBERBASE, account, { observe: 'response' });
+  }
+
+  public createGroupAccount(group: (GroupInterface) ) {
+    // post missing in memberApi
+    // return this.memberApi.patchOrCreate(account);
+    return this
+      .http
+      .post(GROUPBASE, group, { observe: 'response' });
   }
 
 
   // make the request to login
-  public login(account: Account) {
+  public login(account: (MemberInterface) ) {
     return this
       .http
-      .post(`${BASE}${LOGIN}`, account, { observe: 'response' });
+      .post(`${MEMBERBASE}${LOGIN}`, account, { observe: 'response' });
   }
 
 
@@ -82,15 +81,15 @@ export class AuthProvider {
 
     return this
       .http
-      .post(`${BASE}${LOGOUT}`, {}, { params: params, observe: 'response' });
+      .post(`${MEMBERBASE}${LOGOUT}`, {}, { params: params, observe: 'response' });
   }
 
 
   // make the request to reset the password
-  public requestPasswordReset(account: Account) {
+  public requestPasswordReset(account: (MemberInterface) ) {
     return this
       .http
-      .post(`${BASE}${RESET}`, account, { observe: 'response' });
+      .post(`${MEMBERBASE}${RESET}`, account, { observe: 'response' });
   }
 
 
@@ -103,7 +102,7 @@ export class AuthProvider {
 
     return this
       .http
-      .get(`${BASE}${CONFIRM}`, { params: params, observe: 'response' });
+      .get(`${MEMBERBASE}${CONFIRM}`, { params: params, observe: 'response' });
   }
 
 
@@ -115,7 +114,7 @@ export class AuthProvider {
 
     return this
       .http
-      .post(`${BASE}${SET_PASSWORD}`, newPasswordContext, { params: params, observe: 'response' });
+      .post(`${MEMBERBASE}${SET_PASSWORD}`, newPasswordContext, { params: params, observe: 'response' });
   }
 
 

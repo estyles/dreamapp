@@ -1,4 +1,5 @@
 /* tslint:disable */
+export * from './Email';
 export * from './User';
 export * from './RunningGame';
 export * from './GameGroup';

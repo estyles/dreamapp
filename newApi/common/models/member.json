@@ -8,6 +8,12 @@
   "properties": {
     "birthDay": {
       "type": "date"
+    },
+    "gender": {
+      "type": "number"
+    },
+    "isGroupAdmin": {
+      "type": "boolean"
     }
   },
   "validations": [],
@@ -20,18 +26,17 @@
     "runningGame": {
       "type": "belongsTo",
       "model": "RunningGame",
-      "foreignKey": "",
-      "options": {
-        "nestRemoting": true
-      }
+      "foreignKey": ""
     },
     "gameGroup": {
       "type": "belongsTo",
       "model": "GameGroup",
-      "foreignKey": "",
-      "options": {
-        "nestRemoting": true
-      }
+      "foreignKey": ""
+    },
+    "groups": {
+      "type": "hasMany",
+      "model": "Group",
+      "foreignKey": "adminId"
     },
     "group": {
       "type": "belongsTo",
@@ -39,6 +44,19 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "canBeGroupAdmin",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }

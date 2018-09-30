@@ -8,6 +8,8 @@ import {
 declare var Object: any;
 export interface MemberInterface {
   "birthDay"?: Date;
+  "gender"?: number;
+  "isGroupAdmin"?: boolean;
   "realm"?: string;
   "username"?: string;
   "email": string;
@@ -20,11 +22,14 @@ export interface MemberInterface {
   accessTokens?: any[];
   runningGame?: RunningGame;
   gameGroup?: GameGroup;
+  groups?: Group[];
   group?: Group;
 }
 
 export class Member implements MemberInterface {
   "birthDay": Date;
+  "gender": number;
+  "isGroupAdmin": boolean;
   "realm": string;
   "username": string;
   "email": string;
@@ -37,6 +42,7 @@ export class Member implements MemberInterface {
   accessTokens: any[];
   runningGame: RunningGame;
   gameGroup: GameGroup;
+  groups: Group[];
   group: Group;
   constructor(data?: MemberInterface) {
     Object.assign(this, data);
@@ -74,6 +80,14 @@ export class Member implements MemberInterface {
         "birthDay": {
           name: 'birthDay',
           type: 'Date'
+        },
+        "gender": {
+          name: 'gender',
+          type: 'number'
+        },
+        "isGroupAdmin": {
+          name: 'isGroupAdmin',
+          type: 'boolean'
         },
         "realm": {
           name: 'realm',
@@ -136,6 +150,14 @@ export class Member implements MemberInterface {
           relationType: 'belongsTo',
                   keyFrom: 'gameGroupId',
           keyTo: 'id'
+        },
+        groups: {
+          name: 'groups',
+          type: 'Group[]',
+          model: 'Group',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'adminId'
         },
         group: {
           name: 'group',

@@ -1,36 +1,73 @@
-User:
-    *userId: number
-    klasId: number
-    schoolId: number
+RunningGame:
+    isRunning: boolean
+    startTime: DateTime
+    currentStageStartTime: DateTime
+    currentStage: number
+    currentStageType: string
+
+    belongsTo:
+        Game
+    hasOne:
+        Stage
+    hasMany:
+        AnswerList
+        GameGroup
+        Member
+
+GameGroup:
+    isDone: boolean
+    
+    hasMany:
+        Member
+    belongsTo:
+        RunningGame
+
+Member:
     nickname: string
+    gender: boolean
     leeftijd: number
     email: string
     wachtwoord: string
-    antwoorden: Answers[]
 
-School:
+    hasMany:
+        AnswerList
+
+    belongsTo:
+        RunningGame
+        GameGroup
+        Group
+
+Organisation:
     *schoolId: number
     schoolnaam: string
-    plaats: string
-    geoCoord: string
     email: string
-    klassen: Klas[]
 
-Klas:
-    *klasId: number
+    hasMany:
+        Group
+
+Group:
     klasType: string (vmbo,havo,vwo)
     klasNummer: number
     klasNaam: string
+    plaats: string
+    geoCoord: string
 
-Answers:
-    *answersId: number
+    hasOne:
+        RunningGame
+    hasMany:
+        Member
+    belongsTo:
+        Organisation
+
+AnswerList:
     dateStarted: dateTime
-    gameId: number
-    answers: stageAnswers[]
-
-stageAnswers:
-    *stageId: number
-    answers: Answer[]
+    
+    hasMany:
+        Answer
+    belongsTo:
+        Member
+        Game
+        RunningGame
 
 Answer:
     *questionId: number
@@ -38,31 +75,38 @@ Answer:
     text?: string
     number?: number
 
+    belongsTo:
+        AnswerList
+        StageItem
+
 Game:
-    *gameId: number
     title: string
-    stages: Stage[]
     text: string
-    startText: string
-    startIcon: string
+    startButtonText: string
+    startButtonIcon: string
+    
+    hasMany:
+        Stage
+        AnswerList
+        RunningGame
 
 Stage:
-    *stageId: number
-    stageOrder: number
+    order: number
     title: string
-    stageType: string (question|grouping|result)
-    questionItems?: QuestionItem[]
-    resultItems?: ResultItem[]
-    groupingItems?: GroupingItem[]
+    type: string (question|grouping|result)
     nextButtonText: string
     nextButtonIcon: string
     backgroundColor: string
     textColor: string
 
-QuestionItem:
-    *questionId: key
-    itemOrder: number
-    itemType: string (headingItem|textItem|seperatorItem|videoItem|audioItem|imageItem|textInput|rangeInput|numberInput)
+    hasMany:
+        StageItem (can be question, grouping or resultItem)
+    belongsTo:
+        Game
+
+StageItem:
+    order: number
+    itemType: string (headingItem|textItem|seperatorItem|videoItem|audioItem|imageItem|textInput|rangeInput|numberInput|matchedUsersItem|barChart|lineChart|pieChart)
     inputName?: string
     text?: string
     iconLeft?: string
@@ -79,38 +123,23 @@ QuestionItem:
     emptyValidationText?: string
     rangeValidationText?: string
     extraData?: Object
-
-GroupingItem:
-    *groupingId: number
-    itemOrder: number
-    itemType: string (headingItem|textItem|seperatorItem|videoItem|audioItem|imageItem|matchedUsersItem)
-    text?: string
-    iconLeft?: string
-    iconRight?: string
-    url?: string
-    autoplay?: boolean
-
-ResultItem:
-    *resultId: number
-    itemOrder: number
-    resultType: string (headingItem|textItem|seperatorItem|barChart|lineChart|pieChart)
-    text?: string
-    iconLeft?: string
-    iconRight?: string
     placeholderData?: Object
-    resultData?: queryId
     chartConfig?: Object
-    extraData?: Object
 
-QueryList:                      (allows admin to add new dataQueries for resultItems)
-    queryId: number
+    hasOne:
+        DataQuery
+    belongsTo:
+        Stage
+
+DataQuery:                      (allows admin to add new dataQueries for resultItems)
     queryCommand: string
     name: string
     description: string
 
+    belongsTo:
+        StageItem
 
-
-displayitems: 
+displayitems:
 ( only for showing parts of the app interface, in database all items are in same table )
 
 |headingItem

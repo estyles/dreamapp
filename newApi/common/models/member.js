@@ -1,7 +1,6 @@
 'use strict';
 const path = require('path');
 const qs = require('querystring');
-
 const loopback = require("loopback");
 
 // important: make sure you use / have an existing email address setup
@@ -14,15 +13,15 @@ module.exports = function (Member) {
   Member.afterRemote('create', function (context, user, next) {
 
     const url = getBasUrl(Member.app),
-          pkName = Member.definition.idName() || 'id';
+      pkName = Member.definition.idName() || 'id';
 
-          // append action and uid of the use
-          url.push(
-            qs.stringify({
-              action: 'confirm',
-              uid: user[pkName]
-            })
-          );
+    // append action and uid of the use
+    url.push(
+      qs.stringify({
+        action: 'confirm',
+        uid: user[pkName]
+      })
+    );
 
     // all options can be found here:
     // https://github.com/strongloop/loopback/blob/master/common/models/user.js#L540
@@ -45,34 +44,29 @@ module.exports = function (Member) {
 
       // if an error occurs
       if (err) {
-
         // we delete the account
         Member.deleteById(user.id);
-
         // return the error
         return next(err);
-
       }
 
       // return the response
       next();
-
     });
-
   });
 
   // send password reset link when requested
   Member.on('resetPasswordRequest', function (info) {
 
     const app = Member.app,
-          url = getBasUrl(app);
+      url = getBasUrl(app);
 
-          // append the action and accestoken
-          url.push(qs.stringify({ 
-              action: 'set-password',
-              access_token: info.accessToken.id 
-            })
-          );
+    // append the action and accestoken
+    url.push(qs.stringify({
+      action: 'set-password',
+      access_token: info.accessToken.id
+    })
+    );
 
     // create an object with the nessacery date to render the template
     const templateData = {
@@ -97,37 +91,28 @@ module.exports = function (Member) {
       }
 
       console.log(`> sending password reset email to: ${info.email}`);
-
     });
-
   });
-
 };
 
 function getBasUrl(app) {
-
   const url = [];
-
-        // protocol
-        url.push((app && app.get('protocol')) || 'http');
-        url.push('://');
-        // host
-        url.push((app && app.get('host')) || 'localhost');
-
+  // protocol
+  url.push((app && app.get('protocol')) || 'http');
+  url.push('://');
+  // host
+  url.push((app && app.get('host')) || 'localhost');
   const port = (app && app.get('port')) || 3000;
 
   // only if we use a different protocol / port combination add it
   if (!(url[0] === 'http' && port == '80') && !(url[0] === 'https' && port == '443')) {
-
-        url.push(`:${port}`);
+    url.push(`:${port}`);
   }
 
-        // we adding the Ionic 2+ confirm into the URL
-        // loads the Ionic 2+ page from which
-        // we will make the call to confirm the email address
-        url.push('/#/account?');
-
+  // we adding the Ionic 2+ confirm into the URL
+  // loads the Ionic 2+ page from which
+  // we will make the call to confirm the email address
+  url.push('/#/account?');
 
   return url;
-
 }

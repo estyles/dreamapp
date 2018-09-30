@@ -57,7 +57,7 @@ const SETPASSWORD_ACTION = "set-password";
   selector: 'page-account',
   templateUrl: 'account.html',
 })
-export class AccountPage {
+export class GroupPage {
 
   public user: User;
 

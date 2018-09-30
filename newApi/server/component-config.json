@@ -13,6 +13,7 @@
   "loopback-component-auto-migrate": {
     "enabled": true,
     "raiseError": false,
-    "migration": "auto-migrate"
+    "_migration": "auto-migrate",
+    "migration": "auto-update"
   }
 }

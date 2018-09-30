@@ -48,6 +48,7 @@ import { SocketBrowser } from './sockets/socket.browser';
 import { SocketDriver } from './sockets/socket.driver';
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
+import { EmailApi } from './services/custom/Email';
 import { UserApi } from './services/custom/User';
 import { RunningGameApi } from './services/custom/RunningGame';
 import { GameGroupApi } from './services/custom/GameGroup';
@@ -89,6 +90,7 @@ export class SDKBrowserModule {
         LoggerService,
         SDKModels,
         RealTime,
+        EmailApi,
         UserApi,
         RunningGameApi,
         GameGroupApi,

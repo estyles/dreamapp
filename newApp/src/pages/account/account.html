@@ -20,58 +20,56 @@
   </div>
 
   <h2 *ngIf="view === State.Authenticated" text-center>
-    Hello no. {{ user.userId }}!
+    Hello {{ user.username }}!
   </h2>
 
   <form [formGroup]="accountForm">
     <ion-list *ngIf="view !== State.Confirm && view !== State.Authenticated" no-lines>
-
       <ion-item *ngIf="view === State.Create" margin-bottom>
-        <ion-label>
-          <ion-icon name="person" color="white"></ion-icon>
-        </ion-label>
-        <ion-input formControlName="name" placeholder="name" value="evertschone" type="name" spellcheck="false"
-          autocapitalize="off"></ion-input>
+        <ion-icon item-start name="person" color="white"></ion-icon>
+        <ion-input item-content formControlName="name" placeholder="naam" value="" type="name" spellcheck="false" autocapitalize></ion-input>
       </ion-item>
 
       <ion-item *ngIf="view === State.Create" margin-bottom>
         <ion-label>
-          <ion-icon name="calendar" color="white"></ion-icon>
+          <ion-icon name="male" color="white"></ion-icon>&nbsp;<ion-icon name="female" color="white"></ion-icon>
         </ion-label>
-        <ion-input formControlName="birthDay" placeholder="geboortedatum" type="date" spellcheck="false"
-          autocapitalize="off"></ion-input>
+        <ion-select item-content formControlName="gender" interface="popover">
+          <ion-option value="female">Vrouw</ion-option>
+          <ion-option value="male" checked>Man</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="view === State.Create" margin-bottom>
+        <ion-icon item-start name="calendar" color="white"></ion-icon>
+        <ion-input item-content formControlName="birthDay" placeholder="geboortedatum" type="date" spellcheck="false" autocapitalize="off"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="view !== State.ChangePassword" margin-bottom>
-        <ion-label>
-          <ion-icon color="white" name="mail"></ion-icon>
-        </ion-label>
-        <ion-input formControlName="email" placeholder="email" value="evertschone@gmail.com" type="email" spellcheck="false"
+        <ion-icon item-start color="white" name="mail"></ion-icon>
+        <!-- <ion-label>        </ion-label> -->
+        <ion-input item-content formControlName="email" placeholder="email" value="evertschone@gmail.com" type="email" spellcheck="false"
           autocapitalize="off"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="view !== State.Recover">
-        <ion-label>
-          <ion-icon name="lock" color="white"></ion-icon>
-        </ion-label>
-        <ion-input formControlName="password" placeholder="password" type="password" value="test1234" spellcheck="false"
+        <ion-icon item-start name="lock" color="white"></ion-icon>
+        <!-- <ion-label>        </ion-label> -->
+        <ion-input item-content formControlName="password" placeholder="password" type="password" value="test1234" spellcheck="false"
           autocapitalize="off"></ion-input>
       </ion-item>
-      
     </ion-list>
 
     <div *ngIf="view === State.Login">
       <button (click)="login()" [disabled]="!email.valid || !password.valid" ion-button block round color="white" type="button">login</button>
-
       <button (click)="signUp()" ion-button block margin-top round clear small color="white" type="button">maak een
         account</button>
-
       <button (click)="recoverPassword()" ion-button block margin-top round clear small color="white" type="button">wachtwoord
         vergeten</button>
     </div>
 
-    <button *ngIf="view === State.Create" (click)="createAccount()" [disabled]="!accountForm.valid" ion-button block
-      round color="white" type="button">maak account</button>
+    <button *ngIf="view === State.Create" (click)="createAccount()" [disabled]="!accountForm.valid"
+      ion-button block round color="white" type="button">maak account</button>
 
     <button *ngIf="view === State.ChangePassword" (click)="setPassword()" [disabled]="!password.valid" ion-button block
       round color="white" type="button">verander wachtwoord</button>

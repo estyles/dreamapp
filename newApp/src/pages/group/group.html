@@ -1,0 +1,124 @@
+<!--
+  Generated template for the AccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>account</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding-left padding-right>
+
+  <div class="process">
+    <div class="first-bounce"></div>
+    <div class="second-bounce"></div>
+  </div>
+
+  <h2 *ngIf="view === State.Authenticated" text-center>
+    Hello no. {{ user.userId }}!
+  </h2>
+
+  <form [formGroup]="accountForm">
+    <ion-list *ngIf="view !== State.Confirm && view !== State.Authenticated" no-lines>
+      <ion-item *ngIf="view === State.Create" margin-bottom>
+        <ion-icon item-start [name]="group.value ? 'people' : 'person'" color="white"></ion-icon>
+        <ion-input item-content formControlName="name" [placeholder]="group.value ? 'groeps naam' : 'naam'" value=""
+          type="name" spellcheck="false" autocapitalize></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="view === State.Create && !group.value" margin-bottom>
+        <ion-label>
+          <ion-icon name="male" color="white"></ion-icon>&nbsp;<ion-icon name="female" color="white"></ion-icon>
+        </ion-label>
+        <ion-select formControlName="gender" interface="popover">
+          <ion-option value="f">Vrouw</ion-option>
+          <ion-option value="m" checked>Man</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="view === State.Create && group.value" margin-bottom>
+        <ion-icon name="stats" color="white" item-start></ion-icon>
+        <label class="text-input-md dc-sublabel" item-content>
+          klas:
+        </label>
+        <ion-select formControlName="classNumber" interface="popover" class="dc-classNumberField">
+          <ion-option *ngFor="let number of viewItems.classNumbers" value="{{number.text}}">
+            {{number.text}}
+          </ion-option>
+        </ion-select>
+
+        <label class="text-input-md dc-sublabel" item-content>
+          soort:
+        </label>
+        <ion-select formControlName="classType" interface="popover" class="dc-classField">
+          <ion-option *ngFor="let type of viewItems.classTypes" value="{{type.text}}">
+            <b>{{type.text}}</b>
+          </ion-option>
+        </ion-select>
+
+      </ion-item>
+
+      <ion-item *ngIf="view === State.Create && group.value" margin-bottom>
+        <ion-icon item-start name="compass" color="white"></ion-icon>
+        <ion-input item-content formControlName="postalCode" placeholder="postcode" type="text" spellcheck="false"
+          autocapitalize="off"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="view === State.Create && !group.value" margin-bottom>
+        <ion-icon item-start name="calendar" color="white"></ion-icon>
+        <ion-input formControlName="birthDay" placeholder="geboortedatum" type="date" spellcheck="false" autocapitalize="off"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="view !== State.ChangePassword" margin-bottom>
+        <ion-icon item-start color="white" name="mail"></ion-icon>
+        <!-- <ion-label>        </ion-label> -->
+        <ion-input formControlName="email" placeholder="email" value="evertschone@gmail.com" type="email" spellcheck="false"
+          autocapitalize="off"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="view !== State.Recover">
+        <ion-icon item-start name="lock" color="white"></ion-icon>
+        <!-- <ion-label>        </ion-label> -->
+        <ion-input formControlName="password" placeholder="password" type="password" value="test1234" spellcheck="false"
+          autocapitalize="off"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div *ngIf="view === State.Login">
+      <button (click)="login()" [disabled]="!email.valid || !password.valid" ion-button block round color="white" type="button">login</button>
+      <button (click)="signUp()" ion-button block margin-top round clear small color="white" type="button">maak een
+        account</button>
+      <button (click)="recoverPassword()" ion-button block margin-top round clear small color="white" type="button">wachtwoord
+        vergeten</button>
+    </div>
+
+    <button *ngIf="view === State.Create" (click)="group.value ? createGroupAccount() : createAccount()" [disabled]="!accountForm.valid" ion-button block
+      round color="white" type="button">maak account</button>
+
+    <button *ngIf="view === State.ChangePassword" (click)="setPassword()" [disabled]="!password.valid" ion-button block
+      round color="white" type="button">verander wachtwoord</button>
+
+    <button *ngIf="view === State.Recover" (click)="requestPasswordReset()" [disabled]="!email.valid" ion-button block
+      round color="white" type="button">herstel wachtwoord</button>
+
+    <button (click)="back()" *ngIf="view !== State.Login && view !== State.Authenticated" ion-button block margin-top
+      round clear small color="white" type="button">{{ view === State.Confirm ? 'terug' : 'annuleren' }}</button>
+
+    <button (click)="logout()" *ngIf="view === State.Authenticated" ion-button block margin-top round clear small color="white"
+      type="button">log uit</button>
+
+    <ion-list no-lines>
+      <ion-item *ngIf="view === State.Create" margin-bottom>
+        <ion-icon name="people" color="white" item-start></ion-icon>
+        <div class="text-input-md dc-sublabel" item-content> Een groep inschrijven? </div>
+        <ion-toggle formControlName="group"></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+  </form>
+</ion-content>

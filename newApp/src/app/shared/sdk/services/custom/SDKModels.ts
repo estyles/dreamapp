@@ -1,5 +1,6 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
+import { Email } from '../../models/Email';
 import { User } from '../../models/User';
 import { RunningGame } from '../../models/RunningGame';
 import { GameGroup } from '../../models/GameGroup';
@@ -18,6 +19,7 @@ export interface Models { [name: string]: any }
 export class SDKModels {
 
   private models: Models = {
+    Email: Email,
     User: User,
     RunningGame: RunningGame,
     GameGroup: GameGroup,
