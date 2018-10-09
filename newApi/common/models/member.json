@@ -56,6 +56,14 @@
       "principalType": "ROLE",
       "principalId": "canBeGroupAdmin",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "READ",
+      "model": "Group",
+      "property": "__get__groups",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
     }
   ],
   "methods": {}

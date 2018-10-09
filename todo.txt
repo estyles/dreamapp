@@ -4,11 +4,12 @@
     mail (done / with sendgrid / needs TLS disable evn var)
     http
     db models (mostly done)
-    acl
+    acl (0.35 / basic func)
 
 0. User login
     register page (done / basic func )
-        register as group
+        register a group (0.9 / resolve city+geo in backend postcode api)
+        delete a group
     login page  (done / basic func )
         join group
     recover / reset (done / not in Dutch )

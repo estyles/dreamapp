@@ -4,16 +4,17 @@
     "generateOperationScopedModels": true
   },
   "@mean-expert/loopback-component-realtime": {
-    "debug": true,
-    "auth": false,
+    "debug": false,
+    "auth": true,
     "driver": {
       "name": "socket.io"
     }
   },
   "loopback-component-auto-migrate": {
-    "enabled": true,
+    "enabled": false,
+    "_enabled": true,
     "raiseError": false,
-    "_migration": "auto-migrate",
-    "migration": "auto-update"
+    "migration": "auto-migrate",
+    "_migration": "auto-update"
   }
 }

@@ -88,15 +88,17 @@ export class AccountPage {
 
   // input controls
   public name: AbstractControl;
-  public classType: AbstractControl;
-  public classNumber: AbstractControl;
-  public postalCode: AbstractControl;
-  public group: AbstractControl;
   public gender: AbstractControl;
   public email: AbstractControl;
   public birthDay: AbstractControl;
   public password: AbstractControl;
+  
 
+  public group: AbstractControl;
+  public classType: AbstractControl;
+  public classNumber: AbstractControl;
+  public postalCode: AbstractControl;
+  
   // global, reusable loading indicator
   private loader: Loading;
 
@@ -286,64 +288,6 @@ export class AccountPage {
     this
       .authProvider
       .createAccount(account)
-      .pipe(
-        finalize(() => {
-          this.loader.dismiss();
-        })
-      )
-      .subscribe((res: HttpResponse<any>) => {
-
-        if (res.status === HttpStatus.Ok) {
-
-          const confirm: ResponseConfimation = {
-            title: `Account aangemaakt`,
-            message: `To complete your registration please follow the instructionss outlined in the email we just sent.`,
-            nextViewState: State.Login
-          }
-
-          this.handleResponse(confirm);
-
-        } else {
-          console.error('Er is iets verkeerd gegaan', res);
-        }
-
-      }, (err: HttpErrorResponse) => {
-
-        // validation error, an account with the same email address already exists
-        if (err.status === HttpStatus.UnprocessableEntity) {
-          console.error('Unable to create an account, an account with the same email address is already registered', err);
-        } else {
-          console.error('Er is iets verkeerd gegaan', err);
-        }
-
-      });
-
-  }
-
-
-  // the create Group account action
-  public createGroupAccount() {
-
-    if (!this.accountForm.valid) {
-      console.error('Alle velden zijn nodig om een account te maken.');
-      return;
-    }
-
-    const groupAccount: GroupInterface = {
-      // email: this.accountForm.controls['email'].value,
-      // password: this.accountForm.controls['password'].value,
-      klasNaam: this.accountForm.controls['name'].value,
-      klasType: this.accountForm.controls['classType'].value,
-      klasNummer: this.accountForm.controls.classNumber.value,
-      plaatsNaam: this.accountForm.controls['postalCode'].value,
-    }
-
-    this.loader = this.loadingCtrl.create();
-    this.loader.present();
-
-    this
-      .authProvider
-      .createGroupAccount(groupAccount)
       .pipe(
         finalize(() => {
           this.loader.dismiss();

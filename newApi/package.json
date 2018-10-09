@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "start": "node .",
     "posttest": "npm run lint && nsp check",
-    "build:sdk": "./node_modules/.bin/lb-sdk server/server ../newApp/src/app/shared/sdk"
+    "build:sdk": "./node_modules/.bin/lb-sdk server/server ../newApp/src/app/shared/sdk",
+    "build:sdk2": "./node_modules/.bin/lb-sdk server/server ../../ionDream/src/app/shared/sdk",
+    "sdks": "npm run build:sdk && npm run build:sdk2"
   },
   "dependencies": {
     "compression": "^1.0.3",
